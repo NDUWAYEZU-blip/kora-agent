@@ -7,6 +7,7 @@ Opens a new Git Bash window running:
 Then polls port 3000 to confirm it is up.
 """
 
+import time
 from pathlib import Path
 
 import config
@@ -56,6 +57,10 @@ class FrontendManager:
             logger.error("Failed to open frontend terminal window.")
             return False
 
+        # ── Give Git Bash + Next.js time to initialise ────────────────────
+        logger.info("Giving the terminal 10s to initialise...")
+        time.sleep(10)
+
         # ── Poll the port until Next.js is up ────────────────────────────
         logger.info(
             f"Waiting for Next.js to become reachable on port {port} "
@@ -64,7 +69,7 @@ class FrontendManager:
         ok = wait_for_port(
             "localhost", port,
             timeout=config.FRONTEND_STARTUP_TIMEOUT,
-            poll=2.0,
+            poll=3.0,
             label="Frontend",
         )
 

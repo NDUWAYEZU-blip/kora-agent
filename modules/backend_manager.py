@@ -66,6 +66,10 @@ class BackendManager:
             logger.error("Failed to open backend terminal window.")
             return False
 
+        # ── Give Git Bash time to initialise before polling ───────────────
+        logger.info("Giving the terminal 8s to initialise...")
+        time.sleep(8)
+
         # ── Poll the port until uvicorn is up ────────────────────────────
         logger.info(
             f"Waiting for backend to become reachable on port {port} "
@@ -74,7 +78,7 @@ class BackendManager:
         ok = wait_for_port(
             "localhost", port,
             timeout=config.BACKEND_STARTUP_TIMEOUT,
-            poll=2.0,
+            poll=3.0,
             label="Backend",
         )
 
