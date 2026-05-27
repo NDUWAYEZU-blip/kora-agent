@@ -1,0 +1,41 @@
+2026-05-25 11:10:58 [INFO    ] main - ============================================================
+2026-05-25 11:10:58 [INFO    ] main -   KORA DEV ENVIRONMENT BOOTSTRAP AGENT  
+2026-05-25 11:10:58 [INFO    ] main - ============================================================
+2026-05-25 11:10:58 [INFO    ] orchestrator - ── STEP: Docker Desktop ──
+2026-05-25 11:11:03 [INFO    ] docker_manager - Docker Desktop not ready — attempting to start…
+2026-05-25 11:11:04 [INFO    ] docker_manager - Launching Docker Desktop from: C:\Program Files\Docker\Docker\Docker Desktop.exe
+2026-05-25 11:11:04 [INFO    ] docker_manager - Waiting for Docker Desktop process to start…
+2026-05-25 11:11:04 [INFO    ] healthcheck - Waiting for Docker engine to become ready…
+2026-05-25 11:12:43 [INFO    ] healthcheck - Docker engine ready after 11 poll(s).
+2026-05-25 11:12:43 [INFO    ] orchestrator - [OK] Docker Desktop
+2026-05-25 11:12:43 [INFO    ] orchestrator - ── STEP: Redis ──
+2026-05-25 11:12:44 [INFO    ] redis_manager - Redis already reachable on port 6379.
+2026-05-25 11:12:44 [INFO    ] orchestrator - [OK] Redis
+2026-05-25 11:12:44 [INFO    ] orchestrator - ── STEP: pgAdmin ──
+2026-05-25 11:12:44 [INFO    ] pgadmin_manager - Launching pgAdmin from: C:\Program Files\PostgreSQL\17\pgAdmin 4\runtime\pgAdmin4.exe
+2026-05-25 11:12:44 [INFO    ] pgadmin_manager - Waiting for pgAdmin process (up to 30s)…
+2026-05-25 11:12:44 [INFO    ] pgadmin_manager - pgAdmin is running.
+2026-05-25 11:12:44 [INFO    ] orchestrator - [OK] pgAdmin
+2026-05-25 11:12:44 [INFO    ] orchestrator - ── STEP: VS Code ──
+2026-05-25 11:12:44 [INFO    ] vscode_manager - Launching VS Code from: C:\Users\lenovo\AppData\Local\Programs\Microsoft VS Code\code.exe
+2026-05-25 11:12:47 [INFO    ] vscode_manager - VS Code is running.
+2026-05-25 11:12:47 [INFO    ] orchestrator - [OK] VS Code
+2026-05-25 11:12:47 [INFO    ] orchestrator - ── STEP: Backend (FastAPI) ──
+2026-05-25 11:12:49 [INFO    ] backend_manager - Opening backend terminal in: C:\Users\lenovo\Desktop\KORA\kora-backend
+2026-05-25 11:12:49 [INFO    ] backend_manager - Command: source "C:/Users/lenovo/Desktop/KORA/kora-backend/.venv/Scripts/activate" && uvicorn main:app --reload --host 0.0.0.0 --port 8000
+2026-05-25 11:12:49 [INFO    ] backend_manager - Giving the terminal 8s to initialise...
+2026-05-25 11:12:57 [INFO    ] backend_manager - Waiting for backend to become reachable on port 8000 (timeout=60s)...
+2026-05-25 11:14:00 [ERROR   ] healthcheck - [Backend] did NOT become reachable within 60s.
+2026-05-25 11:14:00 [ERROR   ] backend_manager - Backend did not become reachable within 60s.
+  -> Check the backend terminal window for errors.
+2026-05-25 11:14:00 [ERROR   ] orchestrator - [FAIL] Backend (FastAPI)  ← critical step failed
+2026-05-25 11:14:00 [ERROR   ] orchestrator - Critical step 'Backend (FastAPI)' failed — aborting bootstrap.
+2026-05-25 11:14:00 [INFO    ] orchestrator - 
+2026-05-25 11:14:01 [INFO    ] orchestrator - ── STARTUP SUMMARY ──
+2026-05-25 11:14:01 [INFO    ] orchestrator -   ✓  Docker Desktop
+2026-05-25 11:14:01 [INFO    ] orchestrator -   ✓  Redis
+2026-05-25 11:14:01 [INFO    ] orchestrator -   ✓  pgAdmin
+2026-05-25 11:14:01 [INFO    ] orchestrator -   ✓  VS Code
+2026-05-25 11:14:01 [INFO    ] orchestrator -   ✗  Backend (FastAPI)
+2026-05-25 11:14:01 [INFO    ] orchestrator - 
+2026-05-25 11:14:01 [ERROR   ] main - Bootstrap completed with errors. Check logs above.
